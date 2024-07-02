@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
@@ -74,7 +75,8 @@ class AccountController extends Controller
     public function updateProfile(Request $request){
         $rules =[
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email',
+            // 'email' => 'required|email|unique:users,email',
         ];
 
         if(!empty($request->image)){
@@ -92,14 +94,21 @@ class AccountController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        $image = $request->image;
-        $ext = $image->getClientOrginalExtension();
-        $imageName = time().'.'.$ext; //121212.jpg
-        $image->move(public_path('uploads/profile'),$imageName);
+        // image upload
+        if(!empty($request->image)){
 
-        $user->image = $imageName;
-        $user->save();
+            // delete file
+            File::delete(public_path('uploads/profile/'.$user->image));
 
+            $image = $request->image;
+            $ext = $image->getClientOriginalExtension();
+            $imageName = time().'.'.$ext; //121212.jpg
+            $image->move(public_path('uploads/profile'),$imageName);
+
+            $user->image = $imageName;
+            $user->save();
+
+        }
 
         return redirect()->route('account.profile')->with('success', "Profile Updated Successfully");
     }
