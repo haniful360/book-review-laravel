@@ -1,10 +1,13 @@
 <ul class="nav flex-column">
-    <li class="nav-item">
-        <a href="book-listing.html">Books</a>
-    </li>
-    <li class="nav-item">
-        <a href="reviews.html">Reviews</a>
-    </li>
+    @if (Auth::user()->role == 'admin')
+        <li class="nav-item">
+            <a href={{ route('books.index') }}>Books</a>
+        </li>
+        <li class="nav-item">
+            <a href="reviews.html">Reviews</a>
+        </li>
+    @endif
+
     <li class="nav-item">
         <a href="profile.html">Profile</a>
     </li>

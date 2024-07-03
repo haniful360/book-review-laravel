@@ -8,9 +8,9 @@
                     <div class="card-header  text-white">
                         Welcome, {{ Auth::user()->name }}
                         {{-- @php
-                            $user = Auth::user();
-                            dd($user);
-                        @endphp --}}
+                        $user = Auth::user();
+                        dd($user);
+                    @endphp --}}
                     </div>
                     <div class="card-body">
                         <div class="text-center mb-3">
@@ -35,57 +35,59 @@
                 </div>
             </div>
             <div class="col-md-9">
-
-                @include('layouts.message')
-
                 <div class="card border-0 shadow">
                     <div class="card-header  text-white">
-                        Profile
+                        Add Book
                     </div>
-                    <div class="card-body">
-                        <form action="{{ route('account.updateProfile') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            @method('put')
+                    <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-body">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" value="{{ $user->name }}"
-                                    class="form-control @error('name')
-                                is-invalid
-                            @enderror"
-                                    placeholder="Name" name="name" id="" />
-                                @error('name')
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control  @error('title') is-invalid @enderror"
+                                    placeholder="Title" name="title" id="title" />
+                                @error('title')
                                     <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Email</label>
-                                <input type="text" value="{{ $user->email }}"
-                                    class="form-control @error('email')
-                                is-invalid
-                            @enderror"
-                                    placeholder="Email" name="email" id="email" />
-                                @error('email')
+                                <label for="author" class="form-label">Author</label>
+                                <input type="text" class="form-control  @error('author') is-invalid @enderror"
+                                    placeholder="Author" name="author" id="author" />
+                                @error('author')
                                     <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label for="name" class="form-label">Image</label>
-                                <input type="file" name="image" id="image"
-                                    class="form-control @error('image')  is-invalid @enderror">
+                                <label for="author" class="form-label">Description</label>
+                                <textarea name="description" id="description" class="form-control" placeholder="Description" cols="30"
+                                    rows="5"></textarea>
 
-                                @if (Auth::user()->image)
-                                    <img style='width:200px; height:200px'
-                                        src="{{ asset('uploads/profile/' . Auth::user()->image) }}"
-                                        class="img-fluid rounded mt-4" alt="Luna John">
-                                @endif
+                            </div>
 
+                            <div class="mb-3">
+                                <label for="Image" class="form-label">Image</label>
+                                <input type="file" class="form-control  @error('image') is-invalid  @enderror"
+                                    name="image" id="image" />
                                 @error('image')
                                     <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <button class="btn btn-primary mt-2">Update</button>
-                        </form>
-                    </div>
+
+                            <div class="mb-3">
+                                <label for="author" class="form-label">Status</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="1">Active</option>
+                                    <option value="0">Block</option>
+                                </select>
+                            </div>
+
+
+                            <button class="btn btn-primary mt-2">Create</button>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
