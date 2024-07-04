@@ -77,6 +77,13 @@
                                 @error('image')
                                     <p class="invalid-feedback">{{ $message }}</p>
                                 @enderror
+
+                            </div>
+                            <div>
+                                {{-- @if (!empty($book->image))
+                                    <img src="{{ asset('uploads/books/') . $book->image }}" alt="book">
+                                @endif --}}
+                                <img class="w-25 h-25" src="{{ asset('uploads/books/'. $book->image )}}" alt="book">
                             </div>
 
                             <div class="mb-3">
@@ -86,10 +93,7 @@
                                     <option value="0" {{ $book->status === 0 ? 'selected' : '' }}>Block</option>
                                 </select>
                             </div>
-
-
                             <button class="btn btn-primary mt-2">Update</button>
-
                         </div>
                     </form>
                 </div>

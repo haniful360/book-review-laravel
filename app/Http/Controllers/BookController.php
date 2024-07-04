@@ -20,7 +20,7 @@ class BookController extends Controller
             $books->where('title', 'like', '%' . $request->keyword . '%');
         }
 
-        $books = $books->paginate(3);
+        $books = $books->paginate(8);
 
         return view('books.list', [
             'books' => $books,
@@ -139,5 +139,10 @@ class BookController extends Controller
     public function destroy(string $id)
     {
         $book = Book::findOrfail($id);
+
+        // File::delete(public_path('uploads/books' . $book->image));
+        $book->delete();
+
+        return redirect()->route('books.index')->with('success', 'Book Deleted Successfully');
     }
 }
