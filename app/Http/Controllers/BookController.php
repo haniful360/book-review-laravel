@@ -15,12 +15,12 @@ class BookController extends Controller
     public function index(Request $request)
     {
 
-        $books = Book::orderBy('created_at', 'asc');
+        $books = Book::orderBy('created_at', 'asc');//asc
         if (!empty($request->keyword)) {
             $books->where('title', 'like', '%' . $request->keyword . '%');
         }
 
-        $books = $books->paginate(8);
+        $books = $books->paginate(6);
 
         return view('books.list', [
             'books' => $books,
@@ -84,7 +84,10 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
+        $book = Book::findOrfail($id);
+        // return $book;
 
+        return view('books.show', compact('book'));
     }
 
     /**

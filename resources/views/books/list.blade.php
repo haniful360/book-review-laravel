@@ -79,9 +79,10 @@
 
 
                                             </td>
-                                            <form action="{{route('books.destroy', $book->id)}}" method="post">
+                                            <form action="" method="post">
                                                 <td class="d-flex ">
-                                                    <a href="#" class="btn btn-success btn-sm"><i
+                                                    <a href="{{ route('books.show', $book->id) }}"
+                                                        class="btn btn-success btn-sm"><i
                                                             class="fa-regular fa-star"></i></a>
                                                     <a href="{{ route('books.edit', $book->id) }}"
                                                         class="btn btn-primary btn-sm mx-1"><i
@@ -91,7 +92,8 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button onclick="return confirm ('Are you sure?')"
-                                                        class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                                        class="btn btn-danger btn-sm"><i
+                                                            class="fa-solid fa-trash"></i></button>
 
                                                 </td>
                                             </form>
