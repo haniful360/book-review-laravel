@@ -78,6 +78,10 @@
                                         src="{{ asset('uploads/profile/' . Auth::user()->image) }}"
                                         class="img-fluid rounded mt-4" alt="Luna John">
                                 @endif
+                                {{-- <img id="output" src="" width="100" height="100">
+
+                                <input name="photo" type="file" accept="image/*"
+                                    onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"> --}}
 
                                 @error('image')
                                     <p class="invalid-feedback">{{ $message }}</p>

@@ -41,7 +41,19 @@
                         Books
                     </div>
                     <div class="card-body pb-0">
-                        <a href="{{ route('books.create') }}" class="btn btn-primary">Add Book</a>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('books.create') }}" class="btn btn-primary">Add Book</a>
+                            <form action="" method="get">
+                                <div class="d-flex ">
+                                    <input type="text" class="form-control" name='keyword' placeholder="Search title...">
+                                    <button type='submit' value="{{ Request::get('keyword') }}"
+                                        class="btn btn-primary mx-1" type="button">Search</button>
+                                    <a href="{{ route('books.index') }}" class="btn btn-secondary">Clear</a>
+                                </div>
+                            </form>
+
+                        </div>
                         <table class="table  table-striped mt-3">
                             <thead class="table-dark">
                                 <tr>
@@ -60,9 +72,9 @@
                                             <td>3.0 (3 Reviews)</td>
                                             <td>
                                                 @if ($book->status == 1)
-                                                <span class="text-success">Active</span>
+                                                    <span class="text-success">Active</span>
                                                 @else
-                                                <span class="text-danger">Block</span>
+                                                    <span class="text-danger">Block</span>
                                                 @endif
 
 
@@ -70,7 +82,7 @@
                                             <td>
                                                 <a href="#" class="btn btn-success btn-sm"><i
                                                         class="fa-regular fa-star"></i></a>
-                                                <a href="edit-book.html" class="btn btn-primary btn-sm"><i
+                                                <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary btn-sm"><i
                                                         class="fa-regular fa-pen-to-square"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-sm"><i
@@ -90,7 +102,8 @@
                             </tbody>
                             </thead>
                         </table>
-                        <nav aria-label="Page navigation ">
+                        {{ $books->links() }}
+                        {{-- <nav aria-label="Page navigation ">
                             <ul class="pagination">
                                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -98,7 +111,7 @@
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
                             </ul>
-                        </nav>
+                        </nav> --}}
                     </div>
 
                 </div>
