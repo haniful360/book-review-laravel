@@ -5,9 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\Frontend\BooksController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Admin routes
 
 Route::group(['prefix' => 'account'], function () {
 
@@ -26,7 +24,8 @@ Route::group(['prefix' => 'account'], function () {
         Route::get('logout', [AccountController::class, 'logout'])->name('account.logout');
         Route::put('update-profile', [AccountController::class, 'updateProfile'])->name('account.updateProfile');
 
-        Route::resource('books', [BookController::class]);
+        // books for CRUD
+        Route::resource('books', BookController::class);
 
         // Route::get('books', [BookController::class, 'index'])->name('books.index');
         // Route::get('books/create', [BookController::class, 'create'])->name('books.create');
@@ -38,6 +37,6 @@ Route::group(['prefix' => 'account'], function () {
     });
 });
 
-//Frontend Routes
 Route::get('/', [BooksController::class, 'index']);
-Route::get('/book/details/{slug}', [BooksController::class, 'show'])->name('single.books');
+// Route::get('/book/details/{slug}', [BooksController::class, 'show'])->name('single.books');
+Route::get('/book/{id}', [BooksController::class, 'detail'])->name('book.detail');

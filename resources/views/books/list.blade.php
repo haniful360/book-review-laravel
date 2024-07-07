@@ -79,11 +79,11 @@
 
 
                                             </td>
-                                            <form action="" method="post">
+                                            <form action="{{route('books.destroy', $book->id)}}" method="post">
                                                 <td class="d-flex ">
                                                     <a href="{{ route('books.show', $book->id) }}"
                                                         class="btn btn-success btn-sm"><i
-                                                            class="fa-regular fa-star"></i></a>
+                                                            class="fa-regular fa-eye"></i></a>
                                                     <a href="{{ route('books.edit', $book->id) }}"
                                                         class="btn btn-primary btn-sm mx-1"><i
                                                             class="fa-regular fa-pen-to-square"></i>

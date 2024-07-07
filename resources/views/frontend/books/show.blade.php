@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
-    <div class="card border-0 mb-5">
+@extends('layouts.app')
+@section('main')
+    <div class="card  w-50 mx-auto mt-5">
         <div class="row g-0">
             <div class="col">
-                <div class="card-body">
+                <div class="card-body ">
                     <h2 class="card-title">
                         <a href="" class="stretched-link">
                             {{ $book->title }}</a>
@@ -22,14 +13,12 @@
                             <strong class="tag javascript">{{ $book->status ? 'Active' : 'Block' }}</strong></small>
                     </p>
                     <p>{{ $book->description }}</p>
-                    <img style='width:200px; height:200px' src="{{ asset('uploads/books/' . $book->image) }}"
-                        class="img-fluid rounded mt-4" alt="Luna John">
+                    <img style='width:500px; height:350px' src="{{ asset('uploads/books/' . $book->image) }}"
+                        class="img-fluid rounded mt-4 mx-auto" alt="Luna John">
+                        <br>
                     {{ date('Y-m-d', strtotime($book->created_at)) }}
                 </div>
             </div>
         </div>
     </div>
-
-</body>
-
-</html>
+@endsection

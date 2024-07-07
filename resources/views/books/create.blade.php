@@ -44,6 +44,7 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
+
                                 <input type="text" class="form-control  @error('title') is-invalid @enderror"
                                     placeholder="Title" name="title" id="title" />
                                 @error('title')

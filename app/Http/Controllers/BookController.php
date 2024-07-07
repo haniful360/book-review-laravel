@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Bookrequest;
+use App\Http\Requests\UpdatebookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -15,7 +17,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
 
-        $books = Book::orderBy('created_at', 'asc');//asc
+        $books = Book::orderBy('created_at', 'DESC');//asc/DESC
         if (!empty($request->keyword)) {
             $books->where('title', 'like', '%' . $request->keyword . '%');
         }
@@ -39,9 +41,9 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Bookrequest $request)
     {
-        $slug = Str::slug($request->title);
+        $slug = Str::slug($request->title); //Str::slug() helper function
 
         $countSlug = Book::where('slug', $slug)->count();
         if ($countSlug > 0) {
@@ -103,7 +105,7 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatebookRequest $request, string $id)
     {
         $book = Book::findOrfail($id);
 
