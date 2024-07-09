@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
     use HasFactory;
-    // public $fillable = [
-    //     'name',
-    //     'email',
-    //     'password',
-    // ];
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
