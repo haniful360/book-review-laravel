@@ -40,3 +40,4 @@ Route::group(['prefix' => 'account'], function () {
 Route::get('/', [BooksController::class, 'index']);
 // Route::get('/book/details/{slug}', [BooksController::class, 'show'])->name('single.books');
 Route::get('/book/{id}', [BooksController::class, 'detail'])->name('book.detail');
+Route::post('/save-book-review', [BooksController::class, 'saveReview'])->name('book.saveReview');
